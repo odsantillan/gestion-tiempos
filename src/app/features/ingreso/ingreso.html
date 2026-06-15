@@ -1,0 +1,197 @@
+<div class="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-4xl mx-auto">
+
+    <div class="mb-8 flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">Nuevo Ingreso a Sala</h1>
+        <p class="text-sm text-indigo-600 font-medium uppercase tracking-wider mt-1">Registro de sesión de juego</p>
+      </div>
+      <button (click)="cancelar()" class="text-sm font-semibold text-gray-600 hover:text-gray-900 bg-white border border-gray-300 px-4 py-2 rounded-xl shadow-sm transition-colors">
+        Volver al Panel
+      </button>
+    </div>
+
+    <form [formGroup]="ingresoForm" (ngSubmit)="onSubmit()" class="space-y-8">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-5">
+          <div class="border-b border-gray-100 pb-3 flex items-center">
+            <span class="h-8 w-8 bg-indigo-100 text-indigo-600 rounded-lg flex items-center justify-center font-bold mr-3 text-sm">1</span>
+            <h2 class="text-lg font-bold text-gray-800">Datos del Adulto Responsable</h2>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700">Nombre Completo</label>
+            <input type="text" formControlName="tutorNombre"
+                   class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                   [ngClass]="{'border-red-300 bg-red-50': ingresoForm.get('tutorNombre')?.invalid && ingresoForm.get('tutorNombre')?.touched}"
+                   placeholder="Ej. Laura Sánchez">
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700">Cédula de Identidad</label>
+              <input type="text" formControlName="tutorCedula"
+                     class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                     [ngClass]="{'border-red-300 bg-red-50': ingresoForm.get('tutorCedula')?.invalid && ingresoForm.get('tutorCedula')?.touched}"
+                     placeholder="Ej. 1712345678">
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700">Alias (Apodo)</label>
+              <input type="text" formControlName="tutorAlias"
+                     class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                     placeholder="Ej. Mamá Laura">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700">Parentesco con el niño(a)</label>
+              <input type="text" formControlName="tutorParentesco"
+                     class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                     [ngClass]="{'border-red-300 bg-red-50': ingresoForm.get('tutorParentesco')?.invalid && ingresoForm.get('tutorParentesco')?.touched}"
+                     placeholder="Ej. Madre, Padre, Tía...">
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700">Correo Electrónico (Opcional)</label>
+              <input type="email" formControlName="tutorCorreo"
+                     class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                     [ngClass]="{'border-red-300 bg-red-50': ingresoForm.get('tutorCorreo')?.invalid && ingresoForm.get('tutorCorreo')?.touched}"
+                     placeholder="Ej. laura@correo.com">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700">Contacto Adicional (Opcional)</label>
+            <input type="text" formControlName="tutorContactoAdicional"
+                   class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                   placeholder="Ej. Nombre y número de la madre u otro familiar">
+            <p class="mt-1.5 text-xs text-gray-400">Si el adulto responsable no es la madre, preferentemente ingrese aquí el nombre de la madre.</p>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700">WhatsApp de Contacto</label>
+            <input type="tel" formControlName="tutorWhatsapp"
+                   class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                   [ngClass]="{'border-red-300 bg-red-50': ingresoForm.get('tutorWhatsapp')?.invalid && ingresoForm.get('tutorWhatsapp')?.touched}"
+                   placeholder="Ej. 593991234567">
+            <p class="mt-1.5 text-xs text-gray-400">Incluye el código de país sin el signo + (Ej: 593 para Ecuador).</p>
+          </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-5">
+          <div class="border-b border-gray-100 pb-3 flex items-center">
+            <span class="h-8 w-8 bg-pink-100 text-pink-600 rounded-lg flex items-center justify-center font-bold mr-3 text-sm">2</span>
+            <h2 class="text-lg font-bold text-gray-800">Datos del Niño / Niña</h2>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700">Nombres y Apellidos</label>
+            <input type="text" formControlName="ninoNombre"
+                   class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                   [ngClass]="{'border-red-300 bg-red-50': ingresoForm.get('ninoNombre')?.invalid && ingresoForm.get('ninoNombre')?.touched}"
+                   placeholder="Ej. Mateo Rodríguez">
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-semibold text-gray-700">Alias (Apodo)</label>
+              <input type="text" formControlName="ninoAlias"
+                     class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                     placeholder="Ej. Mate">
+            </div>
+
+            <div>
+              <label class="block text-sm font-semibold text-gray-700">Fecha de Nacimiento</label>
+              <input type="date" formControlName="ninoFechaNacimiento"
+                     class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                     [ngClass]="{'border-red-300 bg-red-50': ingresoForm.get('ninoFechaNacimiento')?.invalid && ingresoForm.get('ninoFechaNacimiento')?.touched}">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700">Código Específico</label>
+            <input type="text" formControlName="ninoCodigo" readonly
+                   class="mt-2 block w-full px-4 py-3 border border-gray-200 bg-gray-50 text-gray-500 rounded-xl shadow-sm focus:outline-none text-sm font-mono tracking-widest cursor-not-allowed">
+            <p class="mt-1.5 text-xs text-gray-400">Este código es único y autogenerado para cada niño.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 space-y-6">
+        <div class="border-b border-gray-100 pb-3 flex items-center">
+          <span class="h-8 w-8 bg-green-100 text-green-600 rounded-lg flex items-center justify-center font-bold mr-3 text-sm">3</span>
+          <h2 class="text-lg font-bold text-gray-800">Configuración de la Tarifa y Notas</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="md:col-span-1">
+            <label class="block text-sm font-semibold text-gray-700">Tiempo de Juego Base</label>
+            <select formControlName="tiempoMinutos"
+                    class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm">
+              <option value="30">30 Minutos (Media hora)</option>
+              <option value="60">60 Minutos (1 Hora)</option>
+              <option value="90">90 Minutos (1 Hora y media)</option>
+              <option value="120">120 Minutos (2 Horas)</option>
+              <option value="180">180 Minutos (3 Horas)</option>
+            </select>
+          </div>
+
+          <div class="md:col-span-1">
+            <label class="block text-sm font-semibold text-gray-700">Tiempo Extra (Minutos)</label>
+            <input type="number" formControlName="tiempoExtraMinutos" min="0" max="25" step="5"
+                   class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                   placeholder="Ej. 10">
+            <p class="mt-1.5 text-xs text-gray-400">Hasta 25 minutos extra.</p>
+          </div>
+
+          <div class="md:col-span-1">
+            <label class="block text-sm font-semibold text-gray-700">Adultos Extra</label>
+            <input type="number" formControlName="adultosExtra" min="0"
+                   class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                   placeholder="Ej. 1">
+            <p class="mt-1.5 text-xs text-gray-400">Si hay más de 2 adultos.</p>
+          </div>
+
+          <div class="md:col-span-3">
+            <label class="block text-sm font-semibold text-gray-700">Notas / Restricciones Médicas (Opcional)</label>
+            <input type="text" formControlName="ninoNotas"
+                   class="mt-2 block w-full px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                   placeholder="Ej. Alérgico al maní / Se retira con su tía Elena">
+          </div>
+        </div>
+
+        @if (errorMessage) {
+          <div class="rounded-xl bg-red-50 p-4 border border-red-200 text-sm text-red-800 font-medium">
+            {{ errorMessage }}
+          </div>
+        }
+
+        <div class="pt-4 border-t border-gray-100 flex justify-end gap-4">
+          <button type="button" (click)="cancelar()" [disabled]="isLoading"
+                  class="px-5 py-3.5 border border-gray-300 text-gray-700 rounded-xl font-medium text-sm hover:bg-gray-50 transition-colors disabled:opacity-50">
+            Cancelar
+          </button>
+
+          <button type="submit" [disabled]="isLoading"
+                  class="px-8 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-xl shadow-md transition-all transform hover:-translate-y-0.5 disabled:bg-indigo-300 disabled:transform-none flex items-center justify-center">
+            @if (isLoading) {
+              <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Guardando registro...
+            } @else {
+              Registrar Entrada e Iniciar Tiempo
+            }
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
